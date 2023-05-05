@@ -1,0 +1,2 @@
+# _INTEGRATION TESTS_:
+> These tests are now being the main tests, since it tests more code and the behavior of the app, now a days it's possible to run faster integration tests by starting a docker for example for the DB and running it in-memory, which makes the tests go fast enough to be the ideal choice since it's closer to the real behavior of the app
