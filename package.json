@@ -13,9 +13,9 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "semantic-release": "semantic-release",
     "start": "nest start",
-    "start:dev": "nest start --watch",
+    "start:dev": "nest start --watch | pino-pretty",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "node dist/src/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
@@ -36,9 +36,12 @@
     "express-basic-auth": "^1.2.1",
     "nestjs-pino": "^3.2.0",
     "pg": "^8.10.0",
+    "pino": "^8.14.1",
+    "pino-http": "^8.3.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
-    "swagger-ui-express": "^4.6.2"
+    "swagger-ui-express": "^4.6.2",
+    "webpack": "^5.84.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.1",
@@ -67,6 +70,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-security": "^1.7.1",
     "jest": "29.5.0",
+    "pino-pretty": "^10.0.0",
     "prettier": "^2.3.2",
     "semantic-release": "^21.0.2",
     "source-map-support": "^0.5.20",

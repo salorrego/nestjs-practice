@@ -22,7 +22,7 @@ module.exports = {
       logLevel: {
         doc: 'Pino log level',
         format: ['trace', 'debug', 'info', 'warn', 'error', 'fatal'],
-        default: 'info',
+        default: 'debug',
         env: 'LOG_LEVEL',
       },
     },
@@ -30,13 +30,13 @@ module.exports = {
       apiUser: {
         doc: 'Swagger api-docs auth username.',
         format: String,
-        default: 'nestjs',
+        default: 'admin',
         env: 'SWAGGER_USER',
       },
       apiPass: {
         doc: 'Swagger api-docs auth password.',
         format: String,
-        default: 'nesjts',
+        default: 'admin',
         env: 'SWAGGER_PASS',
       },
     }

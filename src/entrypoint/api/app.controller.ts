@@ -1,13 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
-import { Logger } from 'nestjs-pino';
+import { Logger } from '../../../src/utils/logger';
 
 @Controller('ping')
 export class AppController {
-  constructor(private readonly logger: Logger) {}
+  constructor() {}
 
   @Get()
   ping(): string {
-    this.logger.log(`AppController: Ping API called`)
+    Logger.debug(`AppController: Ping API called.`)
     return "Up and running!";
   }
 }

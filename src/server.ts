@@ -4,7 +4,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { get } from 'config/convict';
+import { get } from '../config/convict';
+import { CustomLogger } from './utils/logger';
 const basicAuth = require('express-basic-auth');
 
 let app: INestApplication;
@@ -15,7 +16,9 @@ let app: INestApplication;
  */
 export async function startServer(): Promise<INestApplication> {
   try {
-    app = await NestFactory.create(AppModule);
+    app = await NestFactory.create(AppModule, {
+      logger: CustomLogger
+    });
 
     app.enableCors({
       origin:
