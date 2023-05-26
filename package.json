@@ -9,7 +9,7 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "commit": "git cz",
-    "db:migrate": "npm run typeorm -- migration:run",
+    "db:migrate": "npm run typeorm migration:run -- -d src/data-access/connection-options.ts",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "semantic-release": "semantic-release",
     "start": "nest start",
@@ -21,13 +21,15 @@
     "test:watch": "npm run test -- --watch",
     "test:cov": "npm run test -- --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "typeorm": "ts-node ./node_modules/typeorm/cli.js"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "typeorm:generate": "npm run typeorm migration:generate -- -d src/data-access/connection-options.ts"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^6.3.0",
+    "@nestjs/typeorm": "^9.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "convict": "^6.2.4",
@@ -35,12 +37,13 @@
     "dotenv": "^16.0.3",
     "express-basic-auth": "^1.2.1",
     "nestjs-pino": "^3.2.0",
-    "pg": "^8.10.0",
+    "pg": "^8.11.0",
     "pino": "^8.14.1",
     "pino-http": "^8.3.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
     "swagger-ui-express": "^4.6.2",
+    "typeorm": "^0.3.16",
     "webpack": "^5.84.1"
   },
   "devDependencies": {

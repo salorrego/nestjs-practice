@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { Logger } from '../../../src/utils/logger';
+import { Logger } from '../../utils/logger';
 
 @Controller('ping')
 export class AppController {
