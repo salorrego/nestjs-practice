@@ -17,7 +17,7 @@ let app: INestApplication;
 export async function startServer(): Promise<INestApplication> {
   try {
     app = await NestFactory.create(AppModule, {
-      logger: CustomLogger
+      logger: CustomLogger,
     });
 
     app.enableCors({
@@ -32,7 +32,9 @@ export async function startServer(): Promise<INestApplication> {
 
     await app.listen(get('server.port'));
   } catch (error) {
-    console.error(`Something went wrong while starting the app ${error.message}, ${error.stack}`)
+    console.error(
+      `Something went wrong while starting the app ${error.message}, ${error.stack}`,
+    );
   }
   return app;
 }

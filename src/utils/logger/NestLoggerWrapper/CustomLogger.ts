@@ -1,10 +1,10 @@
-import { PinoLogger } from "../PinoLogger/PinoLogger";
+import { PinoLogger } from '../PinoLogger/PinoLogger';
 
 export class CustomLogger {
   logger: any;
 
-  constructor(logger: PinoLogger){
-    this.logger = logger
+  constructor(logger: PinoLogger) {
+    this.logger = logger;
   }
 
   log(message: string) {

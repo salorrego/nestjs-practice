@@ -80,7 +80,7 @@ export async function saveBook({
   quantity,
   totalAvailable,
 }): Promise<QueryResult<any>> {
-  let client
+  let client;
   try {
     const query = `INSERT INTO "books" ("name", "author", "genre", "quantity", "totalAvailable") 
     VALUES ($1, $2, $3, $4, $5)`;

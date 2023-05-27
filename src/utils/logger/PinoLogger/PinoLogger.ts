@@ -10,7 +10,6 @@ export class PinoLogger implements Logger {
     this.log = Pino({
       level: get('server.logLevel'),
       enabled: process.env.LOG_ENABLED != 'false',
-      
     });
   }
 

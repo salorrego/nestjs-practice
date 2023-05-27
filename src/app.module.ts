@@ -7,20 +7,14 @@ import { BooksService } from './domain/service/books.service';
 import { AppController } from './entrypoint/api/app.controller';
 import { BooksController } from './entrypoint/api/books.controller';
 
-const entities = [BookModel]
+const entities = [BookModel];
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({...connectionOptions, entities, migrations: []}),
-    TypeOrmModule.forFeature(entities)
+    TypeOrmModule.forRoot({ ...connectionOptions, entities, migrations: [] }),
+    TypeOrmModule.forFeature(entities),
   ],
-  controllers: [
-    AppController,
-    BooksController
-  ],
-  providers: [
-    BooksRepository,
-    BooksService
-  ],
+  controllers: [AppController, BooksController],
+  providers: [BooksRepository, BooksService],
 })
 export class AppModule {}

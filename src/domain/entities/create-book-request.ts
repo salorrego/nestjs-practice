@@ -1,18 +1,18 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsPositive, IsString } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsInt, IsPositive, IsString } from 'class-validator';
 
 export class CreateBookRequest {
   @ApiProperty()
   @IsString()
-  name: string
+  name: string;
 
   @ApiProperty()
   @IsString()
-  author: string
+  author: string;
 
   @ApiProperty()
   @IsString()
-  genre: string
+  genre: string;
 
   @ApiProperty()
   @IsInt()

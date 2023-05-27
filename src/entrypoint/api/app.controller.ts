@@ -7,7 +7,7 @@ export class AppController {
 
   @Get()
   ping(): string {
-    Logger.debug(`AppController: Ping API called.`)
-    return "Up and running!";
+    Logger.debug(`AppController: Ping API called.`);
+    return 'Up and running!';
   }
 }

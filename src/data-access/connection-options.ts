@@ -1,5 +1,5 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
-import { get } from '../../config/convict'
+import { get } from '../../config/convict';
 
 export const connectionOptions: DataSourceOptions = {
   type: 'postgres',
@@ -12,9 +12,8 @@ export const connectionOptions: DataSourceOptions = {
   entities: [get('typeorm.entities')],
   migrations: [get('typeorm.migrations')],
   logging: get('typeorm.logging'),
-}
+};
 
-const dataSource = new DataSource(connectionOptions)
+const dataSource = new DataSource(connectionOptions);
 
 export default dataSource;
- 
