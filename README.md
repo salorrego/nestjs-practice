@@ -46,3 +46,9 @@ $ npm run migration:generate <path to migrations folder + migration name>
 ```bash
 $ npm run db:migrate
 ```
+
+> To seed a couple of example books you can just run
+
+```bash
+$ npm run seed
+```

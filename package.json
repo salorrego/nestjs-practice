@@ -11,6 +11,7 @@
     "commit": "git cz",
     "db:migrate": "npm run typeorm migration:run -- -d src/data-access/connection-options.ts",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "seed": "ts-node test/test-helpers/db/seeding.ts",
     "semantic-release": "semantic-release",
     "start": "nest start",
     "start:dev": "nest start --watch | pino-pretty",
