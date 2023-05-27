@@ -21,4 +21,8 @@ export class BooksRepository {
   async remove(id: number): Promise<void> {
     await this.booksRepository.delete(id);
   }
+
+  async saveBook(book: BookModel): Promise<BookModel> {
+    return this.booksRepository.save(book);
+  }
 }
