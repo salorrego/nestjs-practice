@@ -4,14 +4,14 @@ process.env.TYPEORM_PORT = '54320';
 process.env.TYPEORM_HOST = 'localhost';
 process.env.LOG_LEVEL = 'debug';
 
-import npm from 'npm';
-import util from 'util';
 import { join, dirname } from 'path';
-import * as dockerCompose from 'docker-compose';
+import { upAll } from 'docker-compose';
 import isPortReachable from 'is-port-reachable';
+import { exec } from 'child_process';
+import { promisify } from 'util';
 import { waitForPostgres } from '../test-helpers';
 
-export default async function setup(): Promise<void> {
+export default async function setup() {
   // ✅ Best practice: Give to devs the possibility to avoid this steps
   if (process.argv.includes('--silent')) {
     process.env.LOG_ENABLED = 'false';
@@ -24,7 +24,7 @@ export default async function setup(): Promise<void> {
   const isDBReachable = await isPortReachable(54320, {host: 'localhost'});
   if (!isDBReachable) {
     // 🏃🏻‍♂️ Run docker
-    await dockerCompose.upAll({
+    await upAll({
       cwd: join(dirname(__filename), './docker'),
       log: true,
     });
@@ -34,10 +34,8 @@ export default async function setup(): Promise<void> {
   await waitForPostgres();
 
   // 🏁 Apply DB migrations
-  const npmLoadAsPromise = util.promisify(npm.load);
-  await npmLoadAsPromise();
-  const npmCommandAsPromise = util.promisify(npm.commands['run-script']);
-  await npmCommandAsPromise(['db:migrate']);
+  const customExec = promisify(exec);
+  await customExec('npm run db:migrate');
   // 🌱 Seed anything you require
-  // await npmCommandAsPromise(['seed']);
+  // await customExec('npm run seed');
 }
