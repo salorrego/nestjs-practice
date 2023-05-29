@@ -1,8 +1,9 @@
 // Set ENV variables
+process.env.LOG_LEVEL = 'debug';
+process.env.LOG_PRETTY_PRINT = 'true';
 process.env.DEVICE_PORT = '3333';
 process.env.TYPEORM_PORT = '54320';
 process.env.TYPEORM_HOST = 'localhost';
-process.env.LOG_LEVEL = 'debug';
 
 import { join, dirname } from 'path';
 import { upAll } from 'docker-compose';

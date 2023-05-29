@@ -15,7 +15,6 @@ module.exports = {
   globalTeardown: '<rootDir>/test/support/global-teardown.ts',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   coverageReporters: ['json', 'lcov', 'text', 'clover'],
-  preset: 'ts-jest',
   testEnvironment: 'node',
   verbose: true,
   collectCoverage: false,

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { get } from 'config/convict';
+import { get } from '../../../../config/convict';
 import Pino from 'pino';
 import { Logger } from '../interfaces/Logger';
 

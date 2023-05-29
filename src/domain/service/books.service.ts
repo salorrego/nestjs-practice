@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { BookModel } from 'src/data-access/books/book.model';
-import { BooksRepository } from 'src/data-access/books/books.repository';
-import { Logger } from 'src/utils/logger';
+import { BookModel } from '../../data-access/books/book.model';
+import { BooksRepository } from '../../data-access/books/books.repository';
+import { Logger } from '../../utils/logger';
 import { CreateBookRequest } from '../entities/create-book-request';
 
 @Injectable()
