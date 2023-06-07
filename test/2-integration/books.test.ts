@@ -18,7 +18,8 @@ const books = [
     genre: 'Fantasy',
     quantity: 1,
     totalAvailable: 1,
-  },{
+  },
+  {
     name: 'Absalom, Absalom',
     author: 'WILLIAM FAULKNER',
     genre: 'Fiction',
@@ -38,13 +39,12 @@ async function saveAllBooks() {
 
 const axios = getAxiosInstance();
 
-
 describe('(Integration) Books', () => {
   beforeAll(async () => {
     await startServer();
 
     // Add books to the DB
-    await saveAllBooks()
+    await saveAllBooks();
   });
 
   afterAll(async () => {
@@ -55,11 +55,9 @@ describe('(Integration) Books', () => {
   describe('/api/v1/books', () => {
     describe('GET', () => {
       describe('when the user gets all books', () => {
-        test('then the service should all books', async () => {
+        test('then the service should return all books', async () => {
           //Act
-          const booksResponse = await axios.get(
-            'api/v1/books',
-          );
+          const booksResponse = await axios.get('api/v1/books');
 
           //Assert
           expect(booksResponse).toMatchObject({

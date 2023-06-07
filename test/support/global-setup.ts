@@ -22,7 +22,7 @@ export default async function setup() {
     return;
   }
 
-  const isDBReachable = await isPortReachable(54320, {host: 'localhost'});
+  const isDBReachable = await isPortReachable(54320, { host: 'localhost' });
   if (!isDBReachable) {
     // 🏃🏻‍♂️ Run docker
     await upAll({

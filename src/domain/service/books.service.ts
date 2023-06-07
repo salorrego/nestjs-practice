@@ -8,10 +8,14 @@ import { CreateBookRequest } from '../entities/create-book-request';
 export class BooksService {
   constructor(private readonly booksRepository: BooksRepository) {}
 
-  async getAllBooks(): Promise<BookModel[]> {
+  async getAllBooks(name?: string): Promise<BookModel[]> {
     try {
-      Logger.debug('BooksService: About to get all books');
-      return await this.booksRepository.findAll();
+      Logger.debug(
+        `BooksService: About to get all books${
+          name ? ` by name: ${name}` : ''
+        }`,
+      );
+      return await this.booksRepository.findAll(name);
     } catch (error) {
       Logger.error(
         `BooksService: Something went wrong while getting all books, error ${error.message}, stack ${error.stack}`,
@@ -50,5 +54,43 @@ export class BooksService {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
+  }
+
+  async reserveBook(bookId: number): Promise<BookModel> {
+    let book: BookModel;
+
+    try {
+      book = await this.booksRepository.findOne(bookId);
+    } catch (error) {
+      Logger.error(
+        `BooksService: Something went wrong while reserving book ${bookId}, error ${error.message}, stack ${error.stack}`,
+      );
+      throw new HttpException(
+        `Something went wrong while reserving book ${bookId}`,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+
+    if (!book) {
+      throw new HttpException(
+        `Book ${bookId} not found, please check your params`,
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    if (book.totalAvailable === 0) {
+      throw new HttpException(
+        `All ${book.name} books have been reserved`,
+        HttpStatus.CONFLICT,
+      );
+    }
+
+    book.totalAvailable--;
+
+    const bookReserved = await this.booksRepository.updateBook(book);
+
+    Logger.debug(`BooksService: Book ${book.name} reserved successfully`);
+
+    return bookReserved;
   }
 }

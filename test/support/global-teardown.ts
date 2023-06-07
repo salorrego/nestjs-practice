@@ -1,5 +1,5 @@
 import path from 'path';
-import * as dockerCompose from 'docker-compose';
+import { down } from 'docker-compose';
 import isCI from 'is-ci';
 import { exec } from 'child_process';
 import { promisify } from 'util';
@@ -21,15 +21,14 @@ export default async function tearDown() {
 
     const migrationsToRun = [];
     for (let migration = 0; migration < migrations.rowCount; migration += 1) {
-      await customExec('npm run typeorm:revert')
+      await customExec('npm run typeorm:revert');
     }
 
     // ✋🏻 Stop docker container
-    dockerCompose
-      .down({
-        cwd: path.join(path.dirname(__filename), './docker'),
-        log: true,
-      })
+    down({
+      cwd: path.join(path.dirname(__filename), './docker'),
+      log: true,
+    })
       // eslint-disable-next-line promise/always-return
       .then((res) => {
         console.log('DOCKER COMPOSE DOWN SUCCESFULLY: ', res);
