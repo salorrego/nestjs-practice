@@ -52,3 +52,15 @@ $ npm run db:migrate
 ```bash
 $ npm run seed
 ```
+
+---
+
+---
+
+# Training
+
+## Add Integration tests on your own
+
+> With the API's provided add respective integration tests (there is already an example in the integratio testing folder), also all the setup for the testing to run is already in the repository
+
+> > After you are done you can check your work in the branch _integration-testing-full_
