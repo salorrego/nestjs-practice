@@ -38,6 +38,10 @@ export class BooksController {
     description: 'Create a new book to add to the DB',
     type: BookModel,
   })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: 'Bad Request',
+  })
   async createBook(@Body() body: CreateBookRequest): Promise<BookModel> {
     return this.booksService.createBook(body);
   }
@@ -54,7 +58,7 @@ export class BooksController {
   })
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
-    description: 'Book does not exist',
+    description: 'Book to reserve does not exist',
   })
   async reserveBook(@Param('bookId') bookId: number): Promise<BookModel> {
     return this.booksService.reserveBook(bookId);

@@ -9,13 +9,15 @@ export class BooksService {
   constructor(private readonly booksRepository: BooksRepository) {}
 
   async getAllBooks(name?: string): Promise<BookModel[]> {
+    let books: BookModel[];
+
     try {
       Logger.debug(
         `BooksService: About to get all books${
           name ? ` by name: ${name}` : ''
         }`,
       );
-      return await this.booksRepository.findAll(name);
+      books = await this.booksRepository.findAll(name);
     } catch (error) {
       Logger.error(
         `BooksService: Something went wrong while getting all books, error ${error.message}, stack ${error.stack}`,
@@ -25,6 +27,15 @@ export class BooksService {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
+
+    if (books.length === 0) {
+      throw new HttpException(
+        'No books found for your params',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    return books;
   }
 
   async createBook(book: CreateBookRequest): Promise<BookModel> {
