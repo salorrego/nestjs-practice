@@ -2,6 +2,12 @@
 
 This repository was made for user to learn to add testing
 
+## Required
+
+> Docker is required to be able to develop with this repository
+
+- to start development use `docker-compose up` and then use the migration script `npm run db:migrate`
+
 ## Installation
 
 ```bash
