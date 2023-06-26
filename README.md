@@ -1,6 +1,6 @@
 ## Description
 
-This repository was made for user to learn to add testing
+This repository was made for users to learn to add testing
 
 ## Required
 
